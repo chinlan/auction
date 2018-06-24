@@ -1,0 +1,21 @@
+<h3>Your cart</h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Number</th>
+    <th>Price</th>
+  </tr>
+  <% @line_items.each do |item| %>
+    <tr>
+      <td><%= item.product_name %></td>
+      <td><%= item.number %></td>
+      <td><%= item.product_price %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><%= @cart.total_price %></td>
+  </tr>
+</table>

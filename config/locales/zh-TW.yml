@@ -1,0 +1,6 @@
+zh-TW:
+  enumerize:
+    product:
+      status:
+        draft: "未公開"
+        published: "已公開"

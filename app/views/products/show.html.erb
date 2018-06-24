@@ -1,0 +1,5 @@
+<h3><%= @product.name %></h3>
+<p>$ <%= @product.price %> pt</p>
+<p>Number: <%= @product.number %></p>
+<p>Description: <%= @product.description %></p>
+<p><%= link_to 'Add to Cart', cart_path(product_uid: @product.uid), method: :post %>

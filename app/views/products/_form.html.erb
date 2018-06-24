@@ -1,0 +1,16 @@
+<%= f.label :name %>:
+<%= f.text_field :name %>
+
+<%= f.label :description %>:
+<%= f.text_area :description %>
+
+<%= f.label :price %>:
+<%= f.number_field :price %>
+
+<%= f.label :status %>:
+<%= f.select :status, [[:draft, 0], [:published, 1]], { include_blank: true } %>
+
+<%= f.label :number %>:
+<%= f.number_field :number %>
+
+<%= f.submit %>
