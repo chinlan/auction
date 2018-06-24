@@ -1,4 +1,5 @@
 <div class='nested-fields'>
-  <%= f.input :number %>
-  <%= link_to_remove_association 'remove item', f %>
+  <%= f.input :number, input_html: { class: 'col-md-2' } %>
+  <%= link_to_remove_association 'remove item', f, render_options: { wrapper: 'inline' } %>
+
 </div>

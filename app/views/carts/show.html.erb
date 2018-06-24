@@ -1,28 +1,31 @@
 <h3>Your cart</h3>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Number</th>
-    <th>Price</th>
-  </tr>
-  <% @line_items.each do |item| %>
+<% if current_user.cart %>
+  <table>
     <tr>
-      <td><%= item.product_name %></td>
-      <td><%= item.number %></td>
-      <td><%= item.product_price %></td>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Price</th>
     </tr>
-  <% end %>
-  <tr>
-    <td></td>
-    <td></td>
-    <td><%= @cart.total_price %></td>
-  </tr>
-</table>
+    <% @line_items.each do |item| %>
+      <tr>
+        <td><%= item.product_name %></td>
+        <td><%= item.number %></td>
+        <td><%= item.product_price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><%= @cart.total_price %></td>
+    </tr>
+  </table>
 
-<%= simple_form_for @cart do |f| %>
-  <%= f.simple_fields_for :line_items do |item| %>
-    <%= render 'line_item_fields', f: item %>
+  <%= simple_form_for @cart do |f| %>
+    <%= f.simple_fields_for :line_items do |item| %>
+      <%= render 'line_item_fields', f: item %>
+    <% end %>
+    <%= f.submit %>
   <% end %>
-  <%= f.submit %>
+<% else %>
+  <h2>Nothing in the cart.</h2>
 <% end %>
