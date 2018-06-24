@@ -8,6 +8,8 @@ class Cart < ApplicationRecord
   has_many :line_items
   has_many :products, through: :line_items
 
+  accepts_nested_attributes_for :line_items, reject_if: :all_blank, allow_destroy: true
+
   def total_price
     line_items.inject(0) { |sum, item| sum + item.price * item.number }
   end

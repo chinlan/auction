@@ -24,4 +24,19 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def update
+    @cart = current_user.cart
+    if @cart.update(cart_params)
+      redirect_to cart_path
+    else
+      render :show
+    end
+  end
+
+  private
+
+  def cart_params
+    params.require(:cart).permit(line_items_attributes: [:id, :number, :_destroy])
+  end
+
 end

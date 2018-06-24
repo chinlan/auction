@@ -19,3 +19,10 @@
     <td><%= @cart.total_price %></td>
   </tr>
 </table>
+
+<%= simple_form_for @cart do |f| %>
+  <%= f.simple_fields_for :line_items do |item| %>
+    <%= render 'line_item_fields', f: item %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
