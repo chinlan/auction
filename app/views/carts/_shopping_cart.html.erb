@@ -1,7 +1,7 @@
 <h3>Your cart</h3>
 <% if current_user.cart %>
   <% @line_items.each do |item| %>
-    <%= render 'cart_row', item: item %>
+    <%= render 'carts/cart_row', item: item %>
   <% end %>
   <div class="row">
     <div class="col-md-4 offset-md-8">
@@ -9,12 +9,6 @@
     </div>
   </div>
 
-  <%#= simple_form_for @cart do |f| %>
-    <%#= f.simple_fields_for :line_items do |item| %>
-      <%#= render 'line_item_fields', f: item %>
-    <%# end %>
-    <%#= f.submit %>
-  <%# end %>
 <% else %>
   <h2>Nothing in the cart.</h2>
 <% end %>
