@@ -2,4 +2,11 @@
 <p>$ <%= @product.price %> pt</p>
 <p>Number: <%= @product.number %></p>
 <p>Description: <%= @product.description %></p>
-<p><%= link_to 'Add to Cart', cart_path(product_uid: @product.uid), method: :post %>
+<p>
+  <%#= link_to 'Add to Cart', cart_path(product_uid: @product.uid), method: :post %>
+  <%= form_for @line_item, remote: true do |f| %>
+    <%= f.number_field :number, value: 1, class: "form-control", min: 1 %>
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+  <% end %>
+</p>

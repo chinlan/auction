@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @line_item = LineItem.new
   end
 
   def new

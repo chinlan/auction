@@ -9,12 +9,15 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <ul class="hmenu">
-      <%= render 'devise/menu/login_menu' %>
-      <%= render 'devise/menu/registration_menu' %>
-    </ul>
-    <%= yield %>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <ul class="hmenu">
+        <%= render 'devise/menu/login_menu' %>
+        <%= render 'devise/menu/registration_menu' %>
+      </ul>
+      <p class="cart-text"><%= render 'layouts/cart_text' %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
