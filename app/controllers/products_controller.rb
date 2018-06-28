@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    authorize @product
     @line_item = LineItem.new
   end
 
@@ -25,11 +26,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    raise unless current_user == @product.seller
+    authorize @product
   end
 
   def update
-    raise unless current_user == @product.seller
+    authorize @product
     if @product.update(product_params)
       redirect_to products_path
     else
@@ -38,7 +39,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    raise unless current_user == @product.seller
+    authorize @product
     @product.destroy
     redirect_to products_path
   end
