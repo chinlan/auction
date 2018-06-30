@@ -3,8 +3,8 @@ class CreateOrders < ActiveRecord::Migration[5.0]
     create_table :orders do |t|
       t.string :uid, null: false
       t.references :user, null: false
-      t.float :total_profit
-      t.float :site_profit
+      t.decimal :total_profit, precision: 15, scale: 5
+      t.decimal :site_profit, precision: 15, scale: 5
       t.references :cart, null: false
 
       t.timestamps

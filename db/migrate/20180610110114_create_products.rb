@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.references :user, null: false
       t.string :name, null: false
       t.text :description
-      t.integer :price, null: false, default: 0
+      t.decimal :price, null: false, default: 0.0, precision: 15, scale: 5
       t.integer :status, null: false, default: 0
       t.integer :number, null: false, default: 0
       t.timestamps
