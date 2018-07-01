@@ -7,6 +7,6 @@ class Cart < ApplicationRecord
   has_many :products, through: :line_items
 
   def total_price
-    line_items.inject(0) { |sum, item| sum + item.price * item.number }
+    line_items.inject(0) { |sum, item| sum + item.price * item.quantity }
   end
 end

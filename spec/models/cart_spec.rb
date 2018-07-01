@@ -9,7 +9,7 @@ RSpec.describe Cart, type: :model do
       product = create(:product, price: 100, seller: seller)
       product2 = create(:product, price: 200, seller: seller)
       create(:line_item, cart: @cart, product: product)
-      create(:line_item, cart: @cart, number: 2, product: product2)
+      create(:line_item, cart: @cart, quantity: 2, product: product2)
     end
 
     it 'calculates total price of all line_items in the cart' do

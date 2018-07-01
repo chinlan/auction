@@ -6,11 +6,11 @@ RSpec.describe LineItem, type: :model do
   let(:product) { create(:product, price: 100, seller: seller) }
   # let(:cart) { create(:cart, buyer: buyer) }
 
-  describe '#product_price' do
+  describe '#sum_price' do
     it 'calculates line_item\'s total price' do
-      #line_item = create(:line_item, cart: cart, product: product, number: 3)
-      line_item = build(:line_item, product: product, number: 3)
-      expect(line_item.product_price).to eq(300)
+      #line_item = create(:line_item, cart: cart, product: product, quantity: 3)
+      line_item = build(:line_item, product: product, quantity: 3)
+      expect(line_item.sum_price).to eq(300)
     end
   end
 end

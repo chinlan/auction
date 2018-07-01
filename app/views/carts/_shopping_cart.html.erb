@@ -8,7 +8,7 @@
       <h4 class="text-right">Total price: <%= number_to_currency @cart.total_price %></h4>
     </div>
   </div>
-
+  <%= link_to 'Purchase', orders_path, method: :post %>
 <% else %>
   <h2>Nothing in the cart.</h2>
 <% end %>

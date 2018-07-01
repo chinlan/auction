@@ -4,11 +4,11 @@
   </div>
   <div class="col-md-3">
     <%= form_for item, remote: true do |f| %>
-      <%= number_to_currency item.product_price %> pt
-      <%= f.number_field :number, class: "form-control", min: 1 %>
+      <%= number_to_currency item.sum_price %> pt
+      <%= f.number_field :quantity, class: "form-control", min: 1 %>
       <%= f.hidden_field :product_uid, value: item.product.uid %>
       <div class="btn-group">
-        <%= f.submit "Update number", class: "btn btn-primary" %>
+        <%= f.submit "Update quantity", class: "btn btn-primary" %>
         <%= link_to "Delete", item, { data: { confirm: "Sure?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
       </div>
     <% end %>

@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 20180624060815) do
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "cart_id",                null: false
+    t.integer  "order_id"
     t.integer  "product_id",             null: false
-    t.integer  "number",     default: 1, null: false
+    t.integer  "quantity",   default: 1, null: false
     t.datetime "created_at",             null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
@@ -55,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.text     "description"
     t.decimal  "price",       precision: 15, scale: 5, default: "0.0", null: false
     t.integer  "status",                               default: 0,     null: false
-    t.integer  "number",                               default: 0,     null: false
+    t.integer  "quantity",                             default: 0,     null: false
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.index ["user_id"], name: "index_products_on_user_id"

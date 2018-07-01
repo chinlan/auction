@@ -1,10 +1,10 @@
 <h3><%= @product.name %></h3>
 <p>$ <%= @product.price %> pt</p>
-<p>Number: <%= @product.number %></p>
+<p>Quantity: <%= @product.quantity %></p>
 <p>Description: <%= @product.description %></p>
 <p>
   <%= form_for @line_item, remote: true do |f| %>
-    <%= f.number_field :number, value: 1, class: "form-control", min: 1 %>
+    <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
     <%= f.hidden_field :product_uid, value: @product.uid %>
     <%= f.submit "Add to Cart", class: "btn btn-primary" %>
   <% end %>

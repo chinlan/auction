@@ -6,9 +6,9 @@ class LineItemsController < ApplicationController
     product = Product.with_uid(params.dig(:line_item, :product_uid)).take
     @line_item = @cart.line_items.find_or_initialize_by(product_id: product.id)
     if @line_item.new_record?
-      @line_item.save!
+      @line_item.save!(line_item_params)
     else
-      @line_item.increment!(:number)
+      @line_item.update!(quantity: @line_item.quantity + params.dig(:line_item, :quantity).to_i)
     end
   end
 
@@ -33,6 +33,6 @@ class LineItemsController < ApplicationController
   end
 
   def line_item_params
-    params.require(:line_item).permit(:number, :product_uid)
+    params.require(:line_item).permit(:quantity, :product_uid)
   end
 end
