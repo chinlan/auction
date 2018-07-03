@@ -1,1 +1,5 @@
-$(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>");
+<% if @line_item.errors.any? || @cart.errors.any? %>
+  $('#flash-div').html("<%= escape_javascript(render 'layouts/error_messages'), line_item: @line_item, cart: @cart %>");
+<% else %>
+  $(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>");
+<% end %>
