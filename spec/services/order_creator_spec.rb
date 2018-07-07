@@ -18,7 +18,17 @@ RSpec.describe OrderCreator do
       @product.update(quantity: 5)
     end
 
-    it 'raises an error' do
+    it 'returns nil' do
+      expect(subject).to eq(nil)
+    end
+  end
+
+  context 'when buyer do not have enough points' do
+    before do
+      @buyer.update(points: 0)
+    end
+
+    it 'returns nil' do
       expect(subject).to eq(nil)
     end
   end

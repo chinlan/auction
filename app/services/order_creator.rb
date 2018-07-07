@@ -9,7 +9,7 @@ class OrderCreator
 
   def call
     Order.transaction do
-      calculate_line_item
+      check_purchasable
       create_order
       calculate_buyer_point
     end
@@ -21,9 +21,13 @@ class OrderCreator
 
   private
 
-  def calculate_line_item
+  def check_purchasable
     @cart.line_items.each do |item|
-      raise UnpurchasableError.new, "No enough #{item.product_name}, there is only #{item.product_quantity} left" if item.product_quantity < item.quantity
+      if item.product_quantity < item.quantity
+        raise UnpurchasableError.new, "No enough #{item.product_name}, there is only #{item.product_quantity} left"
+      elsif @user.points < @cart.total_price
+        raise UnpurchasableError.new, "You do not have enough points!"
+      end
       item.product.update!(quantity: item.product_quantity - item.quantity)
     end
   end
