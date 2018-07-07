@@ -8,6 +8,6 @@ FactoryBot.define do
   end
 
   trait :draft do
-    stauts 'draft'
+    status 'draft'
   end
 end

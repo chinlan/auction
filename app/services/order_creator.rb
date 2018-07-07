@@ -15,7 +15,7 @@ class OrderCreator
     end
     @order
   rescue ActiveRecord::RecordInvalid, UnpurchasableError => e
-    @cart.errors.add(:not_enough, e.message)
+    @cart.errors.add(:order_creator_fail, e.message)
     nil
   end
 
