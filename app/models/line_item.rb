@@ -8,7 +8,7 @@ class LineItem < ApplicationRecord
   delegate :user_id, to: :product
   attr_accessor :product_uid
 
-  validate :enough_quantity
+  validate :enough_quantity, if: -> { order_id == nil }
 
   def enough_quantity
     return unless quantity > product_quantity

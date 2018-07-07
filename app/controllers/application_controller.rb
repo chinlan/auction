@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   # rescue_from StandardError do
-  #   logger.error = 'StandardError occurs'
+  #   logger.error 'StandardError occurs'
   #   redirect_to root_path
   # end
 end

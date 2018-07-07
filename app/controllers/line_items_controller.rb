@@ -15,8 +15,8 @@ class LineItemsController < ApplicationController
   def update
     authorize @cart
     @line_item = @cart.line_items.find(params[:id])
-    @line_item.update_attributes(line_item_params)
     @line_items = @cart.line_items
+    @line_item.update_attributes(line_item_params)
   end
 
   def destroy
