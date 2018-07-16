@@ -10,12 +10,12 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: /usr/local/bundle
           PGHOST: 127.0.0.1
-          PGUSER: auction
+          PGUSER: postgres
           RAILS_ENV: test
           REDIS_HOST: localhost
       - image: circleci/postgres:9.6-alpine
         environment:
-          POSTGRES_USER: auction
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: auction
       - image: redis:3.2-alpine
     steps:
@@ -27,18 +27,18 @@ jobs:
           command: bundle -v
 
       # Restore bundle cache
-      - restore_cache:
-          key: rails-auction-bundle-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      # - restore_cache:
+      #     key: rails-auction-bundle-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Bundle Install
           command: bundle check || bundle install
 
       # Store bundle cache
-      - save_cache:
-          key: rails-auction-bundle-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - /usr/local/bundle
+      # - save_cache:
+      #     key: rails-auction-bundle-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      #     paths:
+      #       - /usr/local/bundle
 
       # Only necessary if app uses webpacker or yarn in some other way
       # - restore_cache:

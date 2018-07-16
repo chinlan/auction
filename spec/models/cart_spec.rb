@@ -6,8 +6,8 @@ RSpec.describe Cart, type: :model do
   describe '#total_price' do
     before do
       @cart = create(:cart, buyer: buyer)
-      product = create(:product, price: 100, seller: seller)
-      product2 = create(:product, price: 200, seller: seller)
+      product = create(:product, price: 100, seller: seller, quantity: 5)
+      product2 = create(:product, price: 200, seller: seller, quantity: 5)
       create(:line_item, cart: @cart, product: product)
       create(:line_item, cart: @cart, quantity: 2, product: product2)
     end
