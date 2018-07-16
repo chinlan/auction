@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -34,14 +35,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'enumerize'
 gem 'kaminari'
-gem 'enumerize'
 gem 'uidable'
 gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem "pundit"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'sidekiq'
+gem 'redis-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

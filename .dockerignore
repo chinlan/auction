@@ -1,0 +1,8 @@
+.git
+vendor/bundle
+.bundle/config
+tmp/pids/server.pid
+tmp/cache/
+.dockerignore
+log/*
+.byebug_history

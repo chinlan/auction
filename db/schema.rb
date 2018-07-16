@@ -12,12 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20180624060815) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carts", force: :cascade do |t|
-    t.string   "uid",        null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -26,9 +28,9 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.integer  "product_id",             null: false
     t.integer  "quantity",   default: 1, null: false
     t.datetime "created_at",             null: false
-    t.index ["cart_id"], name: "index_line_items_on_cart_id"
-    t.index ["order_id"], name: "index_line_items_on_order_id"
-    t.index ["product_id"], name: "index_line_items_on_product_id"
+    t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.decimal  "site_profit",  precision: 15, scale: 5
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "orders_users", force: :cascade do |t|
@@ -46,8 +48,8 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.integer  "user_id",                                null: false
     t.decimal  "seller_profit", precision: 15, scale: 5
     t.datetime "created_at",                             null: false
-    t.index ["order_id"], name: "index_orders_users_on_order_id"
-    t.index ["user_id"], name: "index_orders_users_on_user_id"
+    t.index ["order_id"], name: "index_orders_users_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_orders_users_on_user_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -60,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.integer  "quantity",                             default: 0,     null: false
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,8 +79,8 @@ ActiveRecord::Schema.define(version: 20180624060815) do
     t.decimal  "points",                 precision: 15, scale: 5, default: "10000.0", null: false
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
