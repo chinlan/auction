@@ -1,4 +1,4 @@
-class MyConcern
+module MyConcern
   extend ActiveSupport::Concern
 
   included do
