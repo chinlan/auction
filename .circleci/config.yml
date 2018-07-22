@@ -1,66 +1,58 @@
 version: 2
 
+shared: &shared
+  docker:
+    - image: circleci/ruby:2.5.1-node
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        # BUNDLE_PATH: /usr/local/bundle
+        PGHOST: 127.0.0.1
+        PGUSER: postgres
+        RAILS_ENV: test
+        REDIS_HOST: localhost
+    - image: circleci/postgres:9.6-alpine
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: auction
+    - image: redis:3.2-alpine
+
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.5.1-node
-        environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
-          BUNDLE_PATH: /usr/local/bundle
-          PGHOST: 127.0.0.1
-          PGUSER: postgres
-          RAILS_ENV: test
-          REDIS_HOST: localhost
-      - image: circleci/postgres:9.6-alpine
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: auction
-      - image: redis:3.2-alpine
+    <<: *shared
     steps:
       - checkout
-
-      # Which version of bundler?
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
+      # - run: sudo chmod -R 777 /usr/local/bundle
       # Restore bundle cache
-      - restore_cache:
-          type: cache-restore
-          key: rails-auction-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-
+      - &restore_cache
+        type: cache-restore
+        key: rails-auction-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      # Bundle install dependencies
+      - &bundle_install
+        run: bundle check || bundle install --path vendor/bundle
       # Store bundle cache
-      - save_cache:
-          type: cache-save
-          key: rails-auction-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - /usr/local/bundle
-
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      - run:
+      - &save_cache
+        type: cache-save
+        key: rails-auction-v2-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+        paths:
+          # - /usr/local/bundle
+          - vendor/bundle
+      # Database setup
+      - &db_setup
+        run:
           name: Database setup
           command: |
             bundle exec rake db:create
             bundle exec rake db:schema:load
             bundle exec rake db:migrate
-
       # Run rspec in parallel
-      - run:
-          name: Run rspec in parallel
-          command: |
-            bundle exec rspec --profile 10 \
-                              --format RspecJunitFormatter \
-                              --out test_results/rspec.xml \
-                              --format progress \
-                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - type: shell
+        command: |
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       # Save test results for timing analysis
       - store_test_results:
           path: /tmp/test_results
