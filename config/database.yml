@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: postgresql
+  host: postgres
   username: postgres
   password: auction
   port: 5432
@@ -22,6 +23,7 @@ development:
 test:
   <<: *default
   database: rails_auction_test
+  host: <%= ENV['PGHOST'] || 'postgres' %>
 
 production:
   <<: *default

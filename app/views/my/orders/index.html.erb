@@ -1,0 +1,7 @@
+<h3>My Orders</h3>
+<div class="row">
+  <% @orders.each do |order| %>
+    <%= link_to order.created_at.strftime("%F"), my_order_path(order) %>
+  <% end %>
+</div>
+<%= paginate @orders %>

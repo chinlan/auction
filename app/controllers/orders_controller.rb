@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
       redirect_to my_order_path(@order)
     else
       flash[:error] = current_user.cart.errors.full_messages.first
-      redirect_to cart_path
+      redirect_to my_cart_path
     end
   end
 end

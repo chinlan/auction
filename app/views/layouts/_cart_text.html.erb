@@ -1,1 +1,1 @@
-<%= link_to "#{current_user&.cart&.line_items&.size} Items in Cart ( #{number_to_currency current_user&.cart&.total_price} )", cart_path, class: "btn btn-link" %>
+<%= link_to "#{current_user&.cart&.line_items&.size} Items in Cart ( #{number_to_currency current_user&.cart&.total_price} )", my_cart_path, class: "btn btn-link" %>

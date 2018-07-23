@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   namespace :my do
     resource :cart, only: [:show]
     resources :orders, only: [:index, :show]
-    resources :products, only: [:index, :show]
+    resources :sales_orders, only: [:index, :show]
   end
 end
