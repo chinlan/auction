@@ -1,0 +1,5 @@
+<% if @favorite.errors.any? %>
+  alert("<%= escape_javascript(@favorite.errors.full_messages.first) %>");
+<% else %>
+  $("#fav_btn_<%= @favorite.favorable.model_name %>_<%= @favorite.favorable.id %>").html("<%= escape_javascript(render 'layouts/fav_btn', favorable: @favorite.favorable) %>");
+<% end %>

@@ -1,7 +1,11 @@
 <h3><%= @product.name %></h3>
+<%= render 'layouts/fav_btn', favorable: @product %>
 <p>$ <%= @product.price %> pt</p>
 <p>Quantity: <%= @product.quantity %></p>
 <p>Description: <%= @product.description %></p>
+<p>Seller: <%= @product.seller_email %>
+<%= render 'layouts/fav_btn', favorable: @product.seller %>
+</p>
 <% if @product.quantity > 0 %>
   <p>
     <%= form_for @line_item, remote: true do |f| %>
