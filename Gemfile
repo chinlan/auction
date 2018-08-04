@@ -36,7 +36,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'devise'
 gem 'enumerize'
 gem 'kaminari'
-gem 'uidable'
 gem 'bootstrap', '~> 4.1.1'
 gem "pundit"
 # Use Capistrano for deployment

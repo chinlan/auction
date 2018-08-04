@@ -7,7 +7,7 @@ module My
     end
 
     def show
-      @order = current_user.orders.with_uid(params[:id]).take
+      @order = current_user.orders.find params[:id]
     end
   end
 end

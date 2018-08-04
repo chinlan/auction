@@ -10,10 +10,9 @@ class User < ApplicationRecord
   has_many :orders_users
   has_many :sales_orders, through: :orders_users, source: :order
   has_one :cart
-  has_many :favorites
-  has_many :favorite_sellers, through: :favorites,
+  has_many :my_favorites, class_name: 'Favorite'
+  has_many :favorite_sellers, through: :my_favorites,
            source: :favorable, source_type: 'User'
-  has_many :favorite_products, through: :favorites,
+  has_many :favorite_products, through: :my_favorites,
            source: :favorable, source_type: 'Product'
-  has_one :image, as: :imageable
 end

@@ -1,7 +1,6 @@
 class CreateProducts < ActiveRecord::Migration[5.0]
   def change
     create_table :products do |t|
-      t.string :uid, null: false
       t.references :user, null: false
       t.string :name, null: false
       t.text :description

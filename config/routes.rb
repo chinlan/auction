@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:index, :show]
     resources :sales_orders, only: [:index, :show]
-    resources :favorites, only: :index
+    resources :favorite_sellers, only: :index
+    resources :favorite_products, only: :index
   end
 end

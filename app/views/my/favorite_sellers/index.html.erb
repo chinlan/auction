@@ -1,0 +1,7 @@
+<h3>My Favorite Sellers</h3>
+<div class="row">
+  <% @favorite_sellers.each do |seller| %>
+    <%= seller.email %>
+  <% end %>
+</div>
+<%= paginate @favorite_sellers %>

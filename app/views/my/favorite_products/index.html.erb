@@ -1,0 +1,7 @@
+<h3>My Favorite Products</h3>
+<div class="row">
+  <% @favorite_products.each do |product| %>
+    <%= product.name %>
+  <% end %>
+</div>
+<%= paginate @favorite_products %>

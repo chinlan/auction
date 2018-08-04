@@ -6,7 +6,7 @@
     <%= form_for item, remote: true do |f| %>
       <%= number_to_currency item.sum_price %> pt
       <%= f.number_field :quantity, class: "form-control", min: 1 %>
-      <%= f.hidden_field :product_uid, value: item.product.uid %>
+      <%= f.hidden_field :product_id, value: item.product_id %>
       <div class="btn-group">
         <%= f.submit "Update quantity", class: "btn btn-primary" %>
         <%= link_to "Delete", item, { data: { confirm: "Sure?" }, method: :delete, remote: true, class: "btn btn-danger" } %>

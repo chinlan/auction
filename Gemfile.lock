@@ -63,7 +63,7 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.2)
     crass (1.0.4)
-    database_cleaner (1.5.1)
+    database_cleaner (1.7.0)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -75,7 +75,7 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
-    enumerize (1.1.0)
+    enumerize (2.2.2)
       activesupport (>= 3.2)
     erubi (1.7.1)
     execjs (2.7.0)
@@ -243,7 +243,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.11)
       execjs (>= 0.3.0, < 3)
-    uidable (2.0.1)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.6.2)
@@ -285,7 +284,6 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
-  uidable
   web-console (>= 3.3.0)
 
 BUNDLED WITH

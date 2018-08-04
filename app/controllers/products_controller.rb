@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.with_uid(params[:id]).take
+    @product = Product.find params[:id]
   end
 
   def product_params

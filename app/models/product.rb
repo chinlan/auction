@@ -1,9 +1,7 @@
 class Product < ApplicationRecord
   extend Enumerize
-  include Uidable
   include Favorable
 
-  uidable scope: true, set_to_param: true
   enumerize :status, in: { draft: 0, published: 1 },
             default: :draft, scope: true
 
@@ -11,7 +9,6 @@ class Product < ApplicationRecord
   validates :price, presence: true
 
   belongs_to :seller, class_name: 'User', foreign_key: :user_id
-  has_many :images, as: :imageable
 
   delegate :email, to: :seller, prefix: 'seller'
 end

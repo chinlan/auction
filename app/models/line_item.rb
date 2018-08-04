@@ -6,7 +6,6 @@ class LineItem < ApplicationRecord
   delegate :price, to: :product
   delegate :quantity, to: :product, prefix: 'product'
   delegate :user_id, to: :product
-  attr_accessor :product_uid
 
   validate :enough_quantity, if: -> { order_id == nil }
 
