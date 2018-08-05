@@ -11,7 +11,6 @@
 <% end %>
 <p>
   <% if @product.images.attached? %>
-    <h3>Product Images</h3>
     <% @product.images.each do |image| %>
       <%= link_to image_tag(image.variant(resize: '100x100')), image %>
     <% end %>
@@ -21,7 +20,7 @@
 <% if @product.quantity > 0 %>
   <p>
     <%= form_for @line_item, remote: true do |f| %>
-      <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+      <%= f.number_field :quantity, value: 1, min: 1 %>
       <%= f.hidden_field :product_id, value: @product.id %>
       <%= f.submit "Add to Cart", class: "btn btn-primary" %>
     <% end %>
