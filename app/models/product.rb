@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
 
   belongs_to :seller, class_name: 'User', foreign_key: :user_id
+  has_many_attached :images
 
   delegate :email, to: :seller, prefix: 'seller'
 end

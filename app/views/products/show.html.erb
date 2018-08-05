@@ -9,6 +9,14 @@
 <% if current_user %>
   <%= render 'layouts/fav_btn', favorable: @product.seller %>
 <% end %>
+<p>
+  <% if @product.images.attached? %>
+    <h3>Product Images</h3>
+    <% @product.images.each do |image| %>
+      <%= link_to image_tag(image.variant(resize: '100x100')), image %>
+    <% end %>
+  <% end %>
+</p>
 </p>
 <% if @product.quantity > 0 %>
   <p>

@@ -1,7 +1,7 @@
 FROM ruby:2.5.1-alpine3.7
 
 RUN apk update
-RUN apk add --no-cache bash nodejs postgresql less
+RUN apk add --no-cache bash nodejs postgresql less imagemagick
 
 RUN mkdir -p /app
 WORKDIR /app

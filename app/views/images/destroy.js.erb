@@ -1,0 +1,5 @@
+<% if @image.errors.any? %>
+  alert("<%= escape_javascript(@image.errors.full_messages.first) %>");
+<% else %>
+  $("#uploaded-images").html("<%= escape_javascript(render 'layouts/uploaded_images', record: @image.record) %>");
+<% end %>

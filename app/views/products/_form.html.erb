@@ -1,16 +1,37 @@
-<%= f.label :name %>:
-<%= f.text_field :name %>
+<div class="field">
+  <%= f.label :name %>:
+  <%= f.text_field :name %>
+</div>
 
-<%= f.label :description %>:
-<%= f.text_area :description %>
+<div class="field">
+  <%= f.label :description %>:
+  <%= f.text_area :description %>
+</div>
 
-<%= f.label :price %>:
-<%= f.number_field :price %>
+<div class="field">
+  <%= f.label :price %>:
+  <%= f.number_field :price %>
+</div>
 
-<%= f.label :status %>:
-<%= f.select :status, [[:draft, 0], [:published, 1]], { include_blank: true } %>
+<div class="field">
+  <%= f.label :status %>:
+  <%= f.select :status, Product.status.options %>
+</div>
 
-<%= f.label :quantity %>:
-<%= f.number_field :quantity %>
+<div class="field">
+  <%= f.label :quantity %>:
+  <%= f.number_field :quantity %>
+</div>
 
-<%= f.submit %>
+<div id="uploaded-images">
+  <%= render 'layouts/uploaded_images', record: @product %>
+</div>
+
+<div class="field">
+  <%= f.label :images %>
+  <%= f.file_field :images, multiple: true %>
+</div>
+
+<div class="action">
+  <%= f.submit %>
+</div>

@@ -9,6 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
+require "active_storage/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -28,5 +29,7 @@ module Auction
     config.cache_store = :redis_store, ENV['CACHE_URL'], { namespace: 'auction::cache' }
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.active_storage.variant_processor = :vips
   end
 end

@@ -1,0 +1,5 @@
+<% if @avatar.errors.any? %>
+  alert("<%= escape_javascript(@avatar.errors.full_messages.first) %>");
+<% else %>
+  $("#uploaded-avatar").html("");
+<% end %>

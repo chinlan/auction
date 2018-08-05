@@ -15,4 +15,5 @@ class User < ApplicationRecord
            source: :favorable, source_type: 'User'
   has_many :favorite_products, through: :my_favorites,
            source: :favorable, source_type: 'Product'
+  has_one_attached :avatar
 end

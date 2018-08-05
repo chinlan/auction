@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   root to: "products#index"
   resources :products
   resources :line_items, only: [:create, :update, :destroy]
   resources :orders, only: :create
   resources :favorites, only: [:create, :destroy]
+  resources :images, only: :destroy
+  resources :avatars, only: :destroy
   namespace :my do
     resource :cart, only: [:show]
     resources :orders, only: [:index, :show]
