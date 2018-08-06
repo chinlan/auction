@@ -39,6 +39,7 @@ gem 'kaminari'
 gem 'bootstrap', '~> 4.1.1'
 gem "pundit"
 gem 'image_processing', '~> 1.2'
+gem "administrate"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq'

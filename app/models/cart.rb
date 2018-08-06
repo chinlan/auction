@@ -1,6 +1,5 @@
 class Cart < ApplicationRecord
   belongs_to :buyer, class_name: 'User', foreign_key: :user_id
-  has_one :order
   has_many :line_items
   has_many :products, through: :line_items
 
