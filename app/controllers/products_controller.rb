@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.with_status(:published)
+                       .includes(:seller, images_attachments: :blob)
                        .page(params[:page]).per(5)
   end
 
@@ -46,7 +47,7 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find params[:id]
+    @product = Product.with_attached_images.find(params[:id])
   end
 
   def product_params
