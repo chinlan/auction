@@ -44,6 +44,7 @@ gem "administrate"
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq'
 gem 'redis-rails'
+gem 'searchkick'
 
 group :test do
   gem 'rspec-rails', '~> 3.7'

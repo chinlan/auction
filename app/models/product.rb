@@ -1,6 +1,14 @@
 class Product < ApplicationRecord
   extend Enumerize
   include Favorable
+  # searchkick mappings {
+  #   product: {
+  #     properties: {
+  #       description: { type: 'string', norms: { enabled: false } }
+  #     }
+  #   }
+  # }
+  searchkick callbacks: :async
 
   enumerize :status, in: { draft: 0, published: 1 },
             default: :draft, scope: true
@@ -12,4 +20,16 @@ class Product < ApplicationRecord
   has_many_attached :images
 
   delegate :email, to: :seller, prefix: 'seller'
+
+  # def should_index?
+  #   status == 'published'
+  # end
+
+  def search_data
+    {
+      name: name,
+      description: description,
+      status: status
+    }
+  end
 end

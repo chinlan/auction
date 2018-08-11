@@ -12,12 +12,22 @@ services:
       - "6379:6379"
     volumes:
       - auction-redis:/var/lib/redis/
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: docker/elasticsearch/Dockerfile
+    environment:
+      - xpack.security.enabled=false
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
   auction:
     env_file:
       - .env
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/auction/Dockerfile
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
@@ -27,6 +37,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - elasticsearch
   sidekiq:
     build: .
     command: bundle exec sidekiq -C config/sidekiq.yml
@@ -42,3 +53,4 @@ volumes:
   bundle:
   data-volume:
   auction-redis:
+  es-data:

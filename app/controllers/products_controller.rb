@@ -3,9 +3,21 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @products = Product.with_status(:published)
-                       .includes(:seller, images_attachments: :blob)
-                       .page(params[:page]).per(5)
+    if params[:keywords].present?
+      @products = Product.search(
+                           params[:keywords],
+                           fields: ['name^10', 'description'],
+                           operator: 'or',
+                           includes: [:seller, images_attachments: :blob],
+                           where: { status: 'published' },
+                           page: params[:page],
+                           per_page: 20
+                          )
+    else
+      @products = Product.with_status(:published)
+                         .includes(:seller, images_attachments: :blob)
+                         .page(params[:page]).per(5)
+    end
   end
 
   def show
