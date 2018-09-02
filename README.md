@@ -1,24 +1,7 @@
-# README
+# Docker-compose: rails, postgres, redis, elasticsearch, sidekiq
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Setup
+- Build docker images: `docker-compose build`
+- Create database: `docker-compose run auction rake db:create`
+- Run docker compose: `docker-compose up`
+- Open another console and connect to rails container: `docker-compose exec auction bash`
