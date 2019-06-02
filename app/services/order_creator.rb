@@ -36,7 +36,7 @@ class OrderCreator
     site_profit = @cart.total_price * 0.1
     @order = @user.orders.create!(total_profit: @cart.total_price, site_profit: site_profit)
     @cart.line_items.each do |item|
-      item.update!(order_id: @order.id)
+      item.update!(order_id: @order.id, cart_id: nil)
       seller_profit = item.sum_price * 0.9
       @order.orders_users.create!(user_id: item.user_id, seller_profit: seller_profit)
       calculate_seller_point(item.user_id, seller_profit)

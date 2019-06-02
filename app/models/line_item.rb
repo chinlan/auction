@@ -1,6 +1,6 @@
 class LineItem < ApplicationRecord
   belongs_to :product
-  belongs_to :cart
+  belongs_to :cart, optional: true
   belongs_to :order, optional: true
   delegate :name, to: :product, prefix: 'product'
   delegate :price, to: :product
@@ -8,6 +8,7 @@ class LineItem < ApplicationRecord
   delegate :user_id, to: :product
 
   validate :enough_quantity, if: -> { order_id == nil }
+  validates :cart_id, presence: true, on: :create
 
   def enough_quantity
     return unless quantity > product_quantity
