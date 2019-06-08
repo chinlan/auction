@@ -1,8 +1,8 @@
 <% if @line_item.errors.any? || @cart.errors.any? %>
   alert("<%= escape_javascript(@line_item.errors.full_messages.first || @cart.errors.full_messages.first) %>");
   // $('#flash-div').html("<%= escape_javascript(flash[:error] = @line_item.errors.full_messages.first || @cart.errors.full_messages.first) %>");
-  $(".shopping-cart").html("<%= escape_javascript(render 'carts/shopping_cart') %>");
+  $(".shopping-cart").html("<%= escape_javascript(render 'my/carts/shopping_cart') %>");
 <% else %>
   $(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>");
-  $(".shopping-cart").html("<%= escape_javascript(render 'carts/shopping_cart') %>");
+  $(".shopping-cart").html("<%= escape_javascript(render 'my/carts/shopping_cart') %>");
  <% end %>

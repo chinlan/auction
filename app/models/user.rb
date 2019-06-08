@@ -16,4 +16,8 @@ class User < ApplicationRecord
   has_many :favorite_products, through: :my_favorites,
            source: :favorable, source_type: 'Product'
   has_one_attached :avatar
+
+  def nickname
+    email.split(/@/).first
+  end
 end

@@ -5,4 +5,4 @@
 - Create database: `docker-compose run auction rake db:create`
 - Run migration: `docker-compose run auction rake db:migrate`
 - Run docker compose: `docker-compose up`
-- Open another console and connect to rails container: `docker-compose exec auction bash`
+- Open another console and connect to rails application container: `docker-compose exec auction bash`

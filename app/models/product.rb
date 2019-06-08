@@ -21,6 +21,8 @@ class Product < ApplicationRecord
 
   delegate :email, to: :seller, prefix: 'seller'
 
+  after_save { Product.reindex }
+
   # def should_index?
   #   status == 'published'
   # end
