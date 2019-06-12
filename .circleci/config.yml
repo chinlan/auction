@@ -1,6 +1,7 @@
 version: 2
 
 shared: &shared
+  working_directory: ~/project/app
   docker:
     - image: circleci/ruby:2.5.1-node
       environment:
@@ -15,6 +16,12 @@ shared: &shared
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: auction
     - image: redis:3.2-alpine
+    - image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+      environment:
+        network.host: '0.0.0.0'
+        http.port: 9200
+        transport.tcp.port: 9300
+        xpack.security.enabled: false
 
 jobs:
   build:
