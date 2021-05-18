@@ -149,7 +149,9 @@ GEM
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
@@ -164,7 +166,8 @@ GEM
     orm_adapter (0.5.0)
     pg (1.0.0)
     popper_js (1.12.9)
-    puma (3.11.4)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     pundit (1.0.1)
       activesupport (>= 3.0.0)
     rack (2.0.5)
@@ -316,7 +319,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   pg
-  puma (~> 3.0)
+  puma (~> 4.3)
   pundit
   rails (~> 5.2.0)
   redis-rails
